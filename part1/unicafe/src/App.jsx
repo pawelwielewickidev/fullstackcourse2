@@ -10,6 +10,10 @@ const Feedback = (props) => {
 const Statistics = (props) => {
     console.log(props)
     const allFeed = (props.good + props.bad + props.neutral)
+    if (allFeed === 0) {
+        return(
+            <div>
+            </div>    )}
     const avg = ((props.good * 1) + (props.neutral * 0) + (props.bad * -1)) / allFeed
     const posRatio = ((props.good / allFeed) * 100)
     return (
@@ -23,6 +27,11 @@ const Statistics = (props) => {
 
 const Display = (props) => {
     console.log(props)
+    if (props.good === 0){
+        return (
+            <div>
+                <p>No feedback given</p>
+            </div>    )}
     return (
         <div>
           <Feedback name = {props.goodName} feedback = {props.good} />
