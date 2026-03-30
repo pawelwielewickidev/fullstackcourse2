@@ -13,11 +13,13 @@ const Statistics = (props) => {
     if (allFeed === 0) {
         return(
             <div>
+                <p>No feedback given</p>
             </div>    )}
     const avg = ((props.good * 1) + (props.neutral * 0) + (props.bad * -1)) / allFeed
     const posRatio = ((props.good / allFeed) * 100)
     return (
        <div>
+        <Display goodName = "good " good = {props.good} neutralName = "neutral " neutral = {props.neutral} badName = "bad " bad = {props.bad}/>
         <Display allName = "all "  allFeed = {allFeed} avgName = "average " avg = {avg} posRatioName = "positive " posRatio = {posRatio + "%"} />
        </div> )
 
@@ -27,11 +29,6 @@ const Statistics = (props) => {
 
 const Display = (props) => {
     console.log(props)
-    if (props.good === 0){
-        return (
-            <div>
-                <p>No feedback given</p>
-            </div>    )}
     return (
         <div>
           <Feedback name = {props.goodName} feedback = {props.good} />
@@ -72,7 +69,6 @@ const App = () => {
         <Button onClick={() => setToNeutral(neutral + 1)} text="neutral" />
         <Button onClick={() => setToBad(bad + 1)} text="bad" />
         <h2>statistics</h2>
-        <Display goodName = "good " good = {good} neutralName = "neutral " neutral = {neutral} badName = "bad " bad = {bad}/>
         <Statistics good = {good} bad = {bad} neutral = {neutral} />
 
     </div>
