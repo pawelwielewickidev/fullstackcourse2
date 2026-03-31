@@ -3,9 +3,12 @@ import { useState } from 'react'
 const Feedback = (props) => {
     console.log(props)
     return (
-        <div>
-            <p>{props.name}{props.feedback}</p>
-        </div>    )}
+            <tr>
+                    <td>{props.name}</td>
+                    <td style={{ textAlign: 'left' }}>{props.feedback}</td>
+            </tr>
+
+            )}
 
 const Statistics = (props) => {
     console.log(props)
@@ -30,15 +33,16 @@ const Statistics = (props) => {
 const Display = (props) => {
     console.log(props)
     return (
-        <div>
+        <table>
+            <tbody>
           <Feedback name = {props.goodName} feedback = {props.good} />
           <Feedback name = {props.neutralName} feedback = {props.neutral}/>
           <Feedback name = {props.badName} feedback = {props.bad}/>
           <Feedback name = {props.allName} feedback = {props.allFeed}/>
           <Feedback name = {props.avgName} feedback = {props.avg} />
           <Feedback name = {props.posRatioName} feedback = {props.posRatio}/>
-
-        </div>    )}
+            </tbody>
+        </table>    )}
 
 const Button = (props) => (
     <button onClick={props.onClick}>
