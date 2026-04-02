@@ -1,17 +1,30 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
-  ]) 
-  const [newName, setNewName] = useState('')
+  const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
+  const [newName, setNewName] = useState("");
+
+  const addName = (event) => {
+    event.preventDefault();
+    console.log("clicked button", event.target);
+    const nameObject = {
+      content: newName,
+    };
+    setPersons(persons.concat(nameObject));
+    setNewName("");
+  };
+
+  const handleNameChange = (event) => {
+    console.log(event.target.value);
+    setNewName(event.target.value);
+  };
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
+      <form onSubmit={addName}>
         <div>
-          name: <input />
+          name: <input value={newName} onChange={handleNameChange} />
         </div>
         <div>
           <button type="submit">add</button>
@@ -20,7 +33,7 @@ const App = () => {
       <h2>Numbers</h2>
       ...
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
