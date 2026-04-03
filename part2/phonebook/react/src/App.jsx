@@ -1,5 +1,22 @@
 import { useState } from "react";
 
+const Display = (props) => {
+  console.log('display persona', props)
+  return (
+    <ul>
+      {props.persons.map((person, index) => (<Person key = {index} name = {person.name}/>))}
+      
+    </ul>
+  )
+}
+
+const Person =(props) => {
+  console.log('props name',props)
+  return (
+      <li>{props.name}</li>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
   const [newName, setNewName] = useState("");
@@ -8,7 +25,7 @@ const App = () => {
     event.preventDefault();
     console.log("clicked button", event.target);
     const nameObject = {
-      content: newName,
+      name: newName,
     };
     setPersons(persons.concat(nameObject));
     setNewName("");
@@ -31,7 +48,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      ...
+      <Display persons={persons}/>
     </div>
   );
 };
