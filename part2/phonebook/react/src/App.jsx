@@ -1,25 +1,5 @@
 import { useState } from "react";
-
-const Display = (props) => {
-  console.log("display persona", props);
-  return (
-    <ul>
-      {props.persons.map((person, index) => (
-        <Person key={index} name={person.name} number={person.number} />
-      ))}
-    </ul>
-  );
-};
-
-const Person = (props) => {
-  console.log("props name and number", props);
-  return (
-    <li>
-      {props.name}
-      {props.number}
-    </li>
-  );
-};
+import { Display } from "./components/Display";
 
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
