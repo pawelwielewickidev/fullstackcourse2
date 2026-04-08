@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Display } from "./components/Display";
-import axios from "axios";
+import personsService from "./service/personsService";
 
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
@@ -9,10 +9,8 @@ const App = () => {
   const [searchName, setSearchName] = useState("");
 
   useEffect(() => {
-    console.log("effect");
-    axios.get("http://localhost:3001/persons").then((response) => {
-      console.log("promise fulfilled");
-      setPersons(response.data);
+    personsService.getAll().then((initialPersons) => {
+      setPersons(initialPersons);
     });
   }, []);
 
@@ -29,13 +27,11 @@ const App = () => {
       number: newNumber,
     };
 
-    axios.post("http://localhost:3001/persons", newObject).then((response) => {
-      console.log(response);
+    personsService.create(newObject).then((returnedPerson) => {
+      setPersons(persons.concat(returnedPerson));
+      setNewName("");
+      setNewNumber("");
     });
-
-    setPersons(persons.concat(newObject));
-    setNewName("");
-    setNewNumber("");
   };
 
   const searchResult = persons.filter((person) => {

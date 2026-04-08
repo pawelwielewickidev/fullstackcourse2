@@ -24,6 +24,11 @@
       "name": "John Pork",
       "number": "2137",
       "id": "ynU_qdI4CYA"
+    },
+    {
+      "name": "Kanye West",
+      "number": "6767",
+      "id": "lDewothi3AA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
