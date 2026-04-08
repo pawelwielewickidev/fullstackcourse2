@@ -4,6 +4,9 @@ export const Person = (props) => {
     <li>
       {props.name}
       {props.number}
+      <button onClick={() => props.deletePerson(props.id, props.name)}>
+        delete
+      </button>
     </li>
   );
 };

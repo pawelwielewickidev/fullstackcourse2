@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Display } from "./components/Display";
-import personsService from "./service/personsService";
+import personsService from "./service/PersonsService";
 
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
@@ -40,6 +40,20 @@ const App = () => {
     return nameLower.includes(searchLower);
   });
 
+  const deleteEntry = (id, name) => {
+    console.log(id);
+    if (window.confirm(`Delete ${name}?`)) {
+      personsService
+        .remove(id)
+        .then(() => {
+          setPersons(persons.filter((person) => person.id !== id));
+        })
+        .catch((error) => {
+          alert(`Failed to delete ${name}`);
+        });
+    }
+  };
+
   const handleNameChange = (event) => {
     console.log(event.target.value);
     setNewName(event.target.value);
@@ -75,7 +89,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <Display persons={searchResult} />
+      <Display persons={searchResult} deletePerson={deleteEntry} />
     </div>
   );
 };
