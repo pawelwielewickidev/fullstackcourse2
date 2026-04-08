@@ -37,6 +37,14 @@ const App = () => {
             );
             setNewName("");
             setNewNumber("");
+          })
+          .catch((error) => {
+            setNotification(
+              `Information of ${changedName.name} has been removed from server.`,
+            );
+            setTimeout(() => {
+              setNotification(null);
+            }, 5000);
           });
         return;
       }
