@@ -4,6 +4,16 @@
       "name": "Kanye West",
       "number": "6767",
       "id": "lDewothi3AA"
+    },
+    {
+      "name": "John Pork",
+      "number": "6969696",
+      "id": "zj_vonk5UIU"
+    },
+    {
+      "name": "John Porn",
+      "number": "222137",
+      "id": "k27Km8qeDD8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

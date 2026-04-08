@@ -16,10 +16,28 @@ const App = () => {
 
   const addEntry = (event) => {
     event.preventDefault();
-    const nameExists = persons.some((person) => person.name === newName);
+    const nameExists = persons.find((person) => person.name === newName);
     if (nameExists) {
-      alert(`${newName} is already added to phonebook`);
-      return;
+      if (
+        window.confirm(
+          `${newName} is already added to phonebook, replace the old number with a new one?`,
+        )
+      ) {
+        const changedName = { ...nameExists, number: newNumber };
+        console.log(nameExists.id);
+        personsService
+          .update(nameExists.id, changedName)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== nameExists.id ? person : returnedPerson,
+              ),
+            );
+            setNewName("");
+            setNewNumber("");
+          });
+        return;
+      }
     }
     console.log("clicked button", event.target);
     const newObject = {
