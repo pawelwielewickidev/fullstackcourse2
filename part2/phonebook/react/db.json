@@ -14,6 +14,26 @@
       "name": "John Porn",
       "number": "222137",
       "id": "k27Km8qeDD8"
+    },
+    {
+      "name": "Karol Vojtila",
+      "number": "99999",
+      "id": "pte28AifmLs"
+    },
+    {
+      "name": "Karolak Papiezak",
+      "number": "1234123",
+      "id": "zIeey179u8Q"
+    },
+    {
+      "name": "asdf",
+      "number": "111",
+      "id": "_cMCEAeVSo4"
+    },
+    {
+      "name": "Jaglak",
+      "number": "6921317",
+      "id": "WvtxxHPFv4w"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

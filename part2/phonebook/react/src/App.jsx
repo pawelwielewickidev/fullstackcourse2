@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Display } from "./components/Display";
 import personsService from "./service/PersonsService";
+import { Notification } from "./components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [searchName, setSearchName] = useState("");
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     personsService.getAll().then((initialPersons) => {
@@ -49,6 +51,11 @@ const App = () => {
       setPersons(persons.concat(returnedPerson));
       setNewName("");
       setNewNumber("");
+
+      setNotification(`Added ${returnedPerson.name}`);
+      setTimeout(() => {
+        setNotification(null);
+      }, 5000);
     });
   };
 
@@ -88,7 +95,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-
+      <Notification message={notification} />
       <div>
         filter shown with:{" "}
         <input value={searchName} onChange={handleSearchChange} />
