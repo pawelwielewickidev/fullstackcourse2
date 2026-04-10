@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Display = ({ countries }) => {
+const Display = ({ countries, setSearchCountry }) => {
   console.log("display country", countries);
   if (countries.length === 0) {
     return null;
@@ -31,15 +31,21 @@ const Display = ({ countries }) => {
 
   return (
     <ul>
-      {countries.map((country, index) => (
-        <Country key={index} name={country.name.common} />
+      {countries.map((country) => (
+        <li key={country.name.common}>
+          {country.name.common}
+
+          <button
+            type="button"
+            onClick={() => setSearchCountry(country.name.common)}
+            style={{ marginLeft: "5px" }}
+          >
+            show
+          </button>
+        </li>
       ))}
     </ul>
   );
-};
-
-const Country = (props) => {
-  return <li>{props.name}</li>;
 };
 
 const App = () => {
@@ -77,7 +83,7 @@ const App = () => {
         find countries:{" "}
         <input value={searchCountry} onChange={handleCountrySearch} />
       </div>
-      <Display countries={searchResult} />
+      <Display countries={searchResult} setSearchCountry={setSearchCountry} />
     </div>
   );
 };
